@@ -1,0 +1,70 @@
+Boa análise, Elena 👩🏻‍💻. Vou assumir o papel de testador experiente e te dar um **feedback crítico e construtivo** sobre seus testes unitários.
+
+---
+
+### ✅ Pontos positivos
+
+1. **Uso do `@BeforeEach`**: boa prática, evita repetição na criação do objeto `Jokenpo`.
+2. **`@DisplayName` descritivo**: melhora a legibilidade dos testes e ajuda na interpretação dos relatórios.
+3. **Cobertura de cenários básicos**: você já testou:
+
+   * Empate (papel vs papel).
+   * Jogador 1 vencendo (papel vs pedra).
+   * Jogador 2 vencendo (tesoura vs papel).
+   * Caso inválido (entrada incorreta).
+
+Isso já cobre a lógica principal.
+
+---
+
+### ⚠️ Pontos a melhorar
+
+1. **Cobertura incompleta**
+
+   * Seu código só cobre alguns dos cenários possíveis.
+   * Exemplo: não há testes para **tesoura vs pedra**, **pedra vs papel**, **empate em pedra** e **empate em tesoura**.
+   * Para validar de fato as regras do Jokenpo, todos os 9 casos (3x3) deveriam ser testados.
+
+2. **Teste de valores inválidos parcial**
+
+   * Você testou apenas o caso em que o **jogador 1** faz jogada inválida.
+   * Falta testar:
+
+     * Jogador 2 inválido.
+     * Ambos inválidos.
+
+3. **Nomenclatura dos testes**
+
+   * Embora o `@DisplayName` seja descritivo, os nomes dos métodos poderiam seguir um padrão mais claro, por exemplo:
+
+     * `quandoJogador1EscolhePapelEJogador2EscolhePedra_entaoJogador1Vence()`
+     * Isso deixa explícito o **cenário** e o **resultado esperado**.
+
+4. **Redundância**
+
+   * Não há redundância direta, mas como você só testou um empate (papel vs papel), pode dar a falsa sensação de que todos os empates já estão cobertos.
+   * Sugiro generalizar e criar **um teste para cada empate**, em vez de depender de apenas um exemplo.
+
+---
+
+### 🚀 Boas práticas que você pode aplicar
+
+* **Testar a matriz completa**
+  Criar testes que cubram todos os cenários possíveis de combinações.
+* **Usar parâmetros**
+  Para evitar repetição, você pode usar testes parametrizados do JUnit 5 (`@ParameterizedTest` com `@CsvSource`). Isso deixa mais limpo e cobre todos os cenários sem criar 9 métodos separados.
+* **Separar casos válidos e inválidos**
+  Ter classes ou métodos de teste diferentes para validar regras de jogo e entradas inválidas.
+
+---
+
+👉 Resumindo:
+
+* Seus testes são bons como **primeira versão**.
+* Eles **não são suficientes** para garantir a correção completa.
+* Não há redundância grave, mas falta **abrangência** e **sistematização**.
+* As práticas que você seguiu (uso de `BeforeEach`, `DisplayName`) são boas, mas pode melhorar a **cobertura** e a **clareza nos nomes**.
+
+---
+
+Quer que eu refatore seus testes em uma versão **parametrizada com JUnit 5**, cobrindo todos os cenários de forma enxuta e elegante?
